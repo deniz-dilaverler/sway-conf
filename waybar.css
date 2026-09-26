@@ -1,0 +1,49 @@
+* {
+    font-family: "Noto Sans Mono", monospace;
+    font-size: 13px;
+    min-height: 0;
+}
+
+window#waybar {
+    background: #323232;
+    color: #ffffff;
+}
+
+#workspaces button {
+    padding: 0 10px;
+    border: none;
+    border-radius: 0;
+    background: transparent;
+    color: #bdbdbd;
+}
+
+#workspaces button.focused,
+#workspaces button.active {
+    background: #5c5c5c;
+    color: #ffffff;
+}
+
+#mode,
+#language,
+#cpu,
+#memory,
+#clock {
+    padding: 0 12px;
+    border-left: 1px solid #505050;
+}
+
+#language {
+    min-width: 64px;
+}
+
+#cpu {
+    min-width: 76px;
+}
+
+#memory {
+    min-width: 196px;
+}
+
+#clock {
+    min-width: 176px;
+}
