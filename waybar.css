@@ -24,6 +24,8 @@ window#waybar {
 }
 
 #mode,
+#custom-brightness,
+#pulseaudio,
 #language,
 #cpu,
 #memory,
@@ -34,6 +36,14 @@ window#waybar {
 
 #language {
     min-width: 64px;
+}
+
+#custom-brightness {
+    min-width: 92px;
+}
+
+#pulseaudio {
+    min-width: 98px;
 }
 
 #cpu {

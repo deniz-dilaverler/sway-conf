@@ -21,7 +21,7 @@ set $menu wofi --show drun --gtk-dark
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
+output * bg /home/deniz/Pictures/Wallpapers/wp.jpg fill
 #
 # Example configuration:
 #
@@ -33,14 +33,14 @@ output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 #
 # Example configuration:
 #
- exec swayidle -w \
-          timeout 3000 'swaylock -f -c 000000' \
-          timeout 6000'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
-          before-sleep 'swaylock -f -c 000000'
+set $lock swaylock -f --color 111827 --inside-color 1f2937 --ring-color 64748b --line-color 1f2937 --key-hl-color 93c5fd --text-color e5e7eb --inside-ver-color 1e3a5f --ring-ver-color 60a5fa --text-ver-color e5e7eb --inside-wrong-color 3f1d2e --ring-wrong-color f87171 --text-wrong-color fecaca
+
+exec swayidle -w \
+    timeout 900 '$lock' \
+    before-sleep '$lock'
 #
-# This will lock your screen after 300 seconds of inactivity, then turn off
-# your displays after another 300 seconds, and turn your screens back on when
-# resumed. It will also lock your screen before your computer goes to sleep.
+# This locks your screen after 300 seconds of inactivity and before sleep.
+# Displays stay powered to avoid DP-3 failing to re-detect after a DPMS wake.
 
 ### Input configuration
 #
@@ -67,7 +67,6 @@ output HDMI-A-1 mode 1920x1080@60.000Hz
 output HDMI-A-1 pos 2560 0
 output HDMI-A-1 transform 90
 
-workspace 1 output DP-3
 ### Key bindings
 #
 # Basics:
@@ -205,15 +204,29 @@ mode "resize" {
     bindsym Escape mode "default"
 }
 bindsym $mod+r mode "resize"
+
 #
 # Utilities:
 #
-    # Special keys to adjust volume via PulseAudio
-    bindsym --locked XF86AudioMute exec pactl set-sink-mute \@DEFAULT_SINK@ toggle
-    bindsym --locked XF86AudioLowerVolume exec pactl set-sink-volume \@DEFAULT_SINK@ -5% bindsym --locked XF86AudioRaiseVolume exec pactl set-sink-volume \@DEFAULT_SINK@ +5% bindsym --locked XF86AudioMicMute exec pactl set-source-mute \@DEFAULT_SOURCE@ toggle
-    # Special keys to adjust brightness via brightnessctl
-    bindsym --locked XF86MonBrightnessDown exec brightnessctl set 5%-
-    bindsym --locked XF86MonBrightnessUp exec brightnessctl set 5%+
+    # Keychron V1 function layer (Fn + F1–F12).
+    # F1/F2: display brightness; F3/F4: task view / file manager.
+    bindsym --locked XF86MonBrightnessDown exec /home/deniz/.config/sway/brightness.sh down
+    bindsym --locked XF86MonBrightnessUp exec /home/deniz/.config/sway/brightness.sh up
+    bindsym --locked XF86TaskPane focus next
+    bindsym --locked XF86Explorer exec xdg-open /home/deniz
+    # F5/F6 control the keyboard's own backlight in firmware.
+    # F7/F8/F9: previous, play/pause, next track.
+    bindsym --locked XF86AudioPrev exec playerctl previous
+    bindsym --locked XF86AudioPlay exec playerctl play-pause
+    bindsym --locked XF86AudioNext exec playerctl next
+    # F10/F11/F12: mute, volume down, volume up.
+    bindsym --locked XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+    bindsym --locked XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
+    bindsym --locked XF86AudioRaiseVolume exec /home/deniz/.config/sway/volume-up.sh
+    bindsym --locked XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
+
+    # Lock screen
+    bindsym $mod+ctrl+l exec $lock
     # Special key to take a screenshot with grim
     bindsym Print exec grim
     bindsym $mod+Shift+s exec flameshot gui

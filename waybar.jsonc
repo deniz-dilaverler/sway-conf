@@ -5,7 +5,16 @@
     "spacing": 0,
     "modules-left": ["sway/workspaces", "sway/mode"],
     "modules-center": ["sway/window"],
-    "modules-right": ["sway/language", "cpu", "memory", "clock"],
+    "modules-right": [ "pulseaudio", "sway/language", "cpu", "memory", "clock"],
+
+    
+    "pulseaudio": {
+        "format": "VOL {volume}%",
+        "format-muted": "VOL muted",
+        "tooltip": false,
+        "min-length": 10,
+        "align": 0.5
+    },
 
     "sway/workspaces": {
         "disable-scroll": true
