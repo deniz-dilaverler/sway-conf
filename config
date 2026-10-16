@@ -37,9 +37,11 @@ set $lock swaylock -f --color 111827 --inside-color 1f2937 --ring-color 64748b -
 
 exec swayidle -w \
     timeout 900 '$lock' \
+    timeout 5400 'systemctl suspend' \
     before-sleep '$lock'
 #
-# This locks your screen after 300 seconds of inactivity and before sleep.
+# Lock after 15 minutes of inactivity; suspend after 1 hour.
+# Lock before suspending, and wake with the power button or an enabled USB device.
 # Displays stay powered to avoid DP-3 failing to re-detect after a DPMS wake.
 
 ### Input configuration
