@@ -19,6 +19,10 @@ set $term env SSH_AUTH_SOCK=$ssh_agent_sock foot
 # Your preferred application launcher
 set $menu env SSH_AUTH_SOCK=$ssh_agent_sock wofi --show drun --gtk-dark
 
+# Advertise dark mode to applications and use a dark theme for GTK apps.
+exec_always gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
+exec_always gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'
+
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
