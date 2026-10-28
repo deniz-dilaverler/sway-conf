@@ -17,7 +17,7 @@ set $right l
 set $ssh_agent_sock /run/user/1000/sway-ssh-agent.sock
 set $term env SSH_AUTH_SOCK=$ssh_agent_sock foot --font=monospace:size=12
 # Your preferred application launcher
-set $menu env SSH_AUTH_SOCK=$ssh_agent_sock wofi --show drun --gtk-dark
+set $menu env SSH_AUTH_SOCK=$ssh_agent_sock wofi --show drun --gtk-dark --style /home/deniz/.config/sway/wofi.css
 
 # Advertise dark mode to applications and use a dark theme for GTK apps.
 exec_always gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'

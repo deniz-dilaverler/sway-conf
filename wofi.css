@@ -1,0 +1,42 @@
+#window {
+    background-color: #242424;
+    color: #f0f0f0;
+    border: 1px solid #505050;
+}
+
+#outer-box {
+    padding: 12px;
+}
+
+#input {
+    background-image: none;
+    background-color: #323232;
+    color: #f0f0f0;
+    caret-color: #f0f0f0;
+    border: 1px solid #505050;
+    box-shadow: none;
+    margin-bottom: 10px;
+}
+
+#input:focus {
+    border-color: #93c5fd;
+}
+
+#scroll,
+#inner-box,
+#entry,
+#expander-box {
+    background-color: #242424;
+}
+
+#entry {
+    padding: 6px;
+}
+
+#entry:selected {
+    background-color: #505050;
+}
+
+#text {
+    color: #f0f0f0;
+}
